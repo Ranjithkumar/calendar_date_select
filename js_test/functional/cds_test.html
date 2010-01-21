@@ -55,7 +55,26 @@
       today_now[0].onclick();
       assertEqual(false, cds.use_time, "when clicking today link");
       
-      today_now[1].onclick();
+      today_now[5].onclick();
+      assertEqual(true, cds.use_time, "should have been true when clicking now link");
+      cds.close();
+    }},
+    testWeekMonthYearNowButton_mixedMode_shouldSetUseTimeAccordingly: function() { with(this){
+      cds = new CalendarDateSelect($("cds_test"), {time: "mixed"});
+      buttons = $$(".cds_buttons a[href=#]");
+      buttons[1].onclick();
+      assertEqual(false, cds.use_time, "when clicking 1 week link(after one week from today)");
+      
+      buttons[2].onclick();
+      assertEqual(false, cds.use_time, "when clicking 1 month link(after one month from today)");
+      
+      buttons[3].onclick();
+      assertEqual(false, cds.use_time, "when clicking 3 month link(after 3rd month from today)");
+      
+      buttons[4].onclick();
+      assertEqual(false, cds.use_time, "when clicking 1 year link(after 1 year from today)");
+      
+      buttons[5].onclick();
       assertEqual(true, cds.use_time, "should have been true when clicking now link");
       cds.close();
     }},
